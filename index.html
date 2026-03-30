@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para Layla 💕</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #f8a5c2 0%, #c56cd6 40%, #8b5cf6 100%);
+      font-family: 'Lato', sans-serif;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Floating hearts */
+    .hearts-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -60px;
+      font-size: 1.5rem;
+      opacity: 0;
+      animation: floatHeart linear infinite;
+    }
+
+    @keyframes floatHeart {
+      0%   { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 0; }
+      10%  { opacity: 0.6; }
+      90%  { opacity: 0.3; }
+      100% { transform: translateY(-110vh) rotate(20deg) scale(1.2); opacity: 0; }
+    }
+
+    /* Main content */
+    .page {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 20px 80px;
+      gap: 50px;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+    }
+
+    .header .subtitle {
+      color: rgba(255,255,255,0.85);
+      font-size: 1rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 10vw, 6rem);
+      color: #fff;
+      text-shadow: 0 4px 30px rgba(0,0,0,0.2);
+      line-height: 1.1;
+    }
+
+    .header h1 span {
+      color: #ffe4f0;
+      font-style: italic;
+    }
+
+    .header .heart-divider {
+      margin-top: 18px;
+      font-size: 2rem;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50%       { transform: scale(1.25); }
+    }
+
+    /* Cards */
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      justify-content: center;
+      max-width: 900px;
+      width: 100%;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 24px;
+      padding: 36px 32px;
+      flex: 1 1 260px;
+      max-width: 340px;
+      text-align: center;
+      color: #fff;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    }
+
+    .card .icon { font-size: 2.5rem; margin-bottom: 14px; }
+
+    .card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.9);
+    }
+
+    /* Letter */
+    .letter {
+      max-width: 680px;
+      width: 100%;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 28px;
+      padding: 50px 44px;
+      color: #fff;
+      text-align: center;
+    }
+
+    .letter .label {
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 20px;
+    }
+
+    .letter blockquote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.1rem, 3vw, 1.4rem);
+      font-style: italic;
+      line-height: 1.9;
+      color: #fff;
+    }
+
+    .letter .signature {
+      margin-top: 28px;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .letter .signature strong {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      display: block;
+      margin-top: 6px;
+      color: #fff;
+    }
+
+    /* Counter */
+    .counter-section {
+      text-align: center;
+      color: #fff;
+    }
+
+    .counter-section .label {
+      font-size: 0.85rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 16px;
+    }
+
+    .counter {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .counter-item {
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 16px;
+      padding: 18px 28px;
+      min-width: 90px;
+    }
+
+    .counter-item .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .counter-item .unit {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.75);
+      margin-top: 4px;
+    }
+
+    /* Footer */
+    footer {
+      position: relative;
+      z-index: 1;
+      color: rgba(255,255,255,0.55);
+      font-size: 0.8rem;
+      padding-bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating hearts background -->
+  <div class="hearts-bg" id="heartsContainer"></div>
+
+  <div class="page">
+
+    <!-- Header -->
+    <div class="header">
+      <p class="subtitle">Uma página só para você</p>
+      <h1>Para a minha<br/><span>Layla</span></h1>
+      <div class="heart-divider">💕</div>
+    </div>
+
+    <!-- Cards -->
+    <div class="cards">
+      <div class="card">
+        <div class="icon">🌸</div>
+        <h2>Você é especial</h2>
+        <p>Cada dia ao seu lado é um presente que eu nunca vou deixar de valorizar.</p>
+      </div>
+      <div class="card">
+        <div class="icon">✨</div>
+        <h2>Você me inspira</h2>
+        <p>O seu jeito de ser faz minha vida mais bonita, mais leve e mais cheia de sentido.</p>
+      </div>
+      <div class="card">
+        <div class="icon">💫</div>
+        <h2>Você é meu lar</h2>
+        <p>Onde você estiver, é lá que eu quero estar. Simples assim.</p>
+      </div>
+    </div>
+
+    <!-- Letter -->
+    <div class="letter">
+      <p class="label">Uma mensagem de coração</p>
+      <blockquote>
+        "Layla, você entrou na minha vida e pintou tudo com cores que eu não sabia que existiam.
+        Cada sorriso seu é o meu momento favorito do dia,
+        cada abraço é o lugar onde eu mais quero estar.
+        Obrigado por ser exatamente quem você é —
+        e por deixar que eu te ame."
+      </blockquote>
+      <div class="signature">
+        Com todo o meu amor,
+        <strong>Sempre seu 💕</strong>
+      </div>
+    </div>
+
+    <!-- Days together counter -->
+    <div class="counter-section">
+      <p class="label">Juntos há</p>
+      <div class="counter">
+        <div class="counter-item">
+          <div class="num" id="days">0</div>
+          <div class="unit">dias</div>
+        </div>
+        <div class="counter-item">
+          <div class="num" id="hours">0</div>
+          <div class="unit">horas</div>
+        </div>
+        <div class="counter-item">
+          <div class="num" id="minutes">0</div>
+          <div class="unit">minutos</div>
+        </div>
+        <div class="counter-item">
+          <div class="num" id="seconds">0</div>
+          <div class="unit">segundos</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>feito com 💕 só pra você, Layla</footer>
+
+  <script>
+    // ── Floating hearts ──────────────────────────────────────
+    const container = document.getElementById('heartsContainer');
+    const emojis = ['💕','💗','💖','💝','🌸','✨','💫','🌷'];
+
+    function spawnHeart() {
+      const el = document.createElement('span');
+      el.className = 'heart';
+      el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      el.style.left = Math.random() * 100 + 'vw';
+      const dur = 7 + Math.random() * 8;
+      el.style.animationDuration = dur + 's';
+      el.style.animationDelay = Math.random() * 3 + 's';
+      el.style.fontSize = (1 + Math.random() * 1.5) + 'rem';
+      container.appendChild(el);
+      setTimeout(() => el.remove(), (dur + 3) * 1000);
+    }
+
+    setInterval(spawnHeart, 600);
+    for (let i = 0; i < 12; i++) spawnHeart();
+
+    // ── Counter — CHANGE THIS DATE to when you started dating ─
+    const startDate = new Date('2024-01-01T00:00:00'); // ← troque para a data do namoro
+
+    function updateCounter() {
+      const now = new Date();
+      const diff = Math.max(0, now - startDate);
+
+      const totalSeconds = Math.floor(diff / 1000);
+      const seconds = totalSeconds % 60;
+      const minutes = Math.floor(totalSeconds / 60) % 60;
+      const hours   = Math.floor(totalSeconds / 3600) % 24;
+      const days    = Math.floor(totalSeconds / 86400);
+
+      document.getElementById('days').textContent    = days;
+      document.getElementById('hours').textContent   = hours;
+      document.getElementById('minutes').textContent = minutes;
+      document.getElementById('seconds').textContent = seconds;
+    }
+
+    updateCounter();
+    setInterval(updateCounter, 1000);
+  </script>
+</body>
+</html>
